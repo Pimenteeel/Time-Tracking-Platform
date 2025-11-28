@@ -1,14 +1,20 @@
-#from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify
 import pyodbc
+import struct
+import sys
 
-#app = Flask(__name__)
+print(f"\n---> ESTOU RODANDO EM: {struct.calcsize('P') * 8} BITS")
+print(f"---> EXECUTÁVEL: {sys.executable}\n")
+
+
+app = Flask(__name__)
 
 def get_db_connection():
     DRIVER = '{ODBC Driver 17 for SQL Server}'
     SERVIDOR = r'br02sqltc1.straumann.com\sql2019t'
     BANCO = 'pesq_desenv_test'
 
-    str_conexao = f"{DRIVER}; SERVER = {SERVIDOR}; DATABASE = {BANCO}; Trust_Connection = yes;"
+    str_conexao = f"{DRIVER};SERVER={SERVIDOR};DATABASE={BANCO};Trust_Connection=yes;"
 
     try:
         #Conexão com o banco: 
@@ -35,3 +41,7 @@ def get_db_connection():
         if 'conexao' in locals():
             conexao.close()
             print("Conexão fechada")
+
+if __name__ == "__main__":
+    get_db_connection()
+    app.run(debug=True)
