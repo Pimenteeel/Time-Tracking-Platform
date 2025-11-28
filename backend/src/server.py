@@ -1,20 +1,19 @@
 from flask import Flask, request, jsonify
 import pyodbc
-import struct
-import sys
-
-print(f"\n---> ESTOU RODANDO EM: {struct.calcsize('P') * 8} BITS")
-print(f"---> EXECUTÁVEL: {sys.executable}\n")
-
+import os
+from dotenv import load_dotenv
 
 app = Flask(__name__)
+load_dotenv()
 
 def get_db_connection():
     DRIVER = '{ODBC Driver 17 for SQL Server}'
-    SERVIDOR = r'br02sqltc1.straumann.com\sql2019t'
-    BANCO = 'pesq_desenv_test'
+    SERVIDOR = os.getenv('DB_SERVER')
+    BANCO = os.getenv('DB_NAME')
+    USUARIO_SQL = os.getenv('DB_USER')
+    SENHA_SQL = os.getenv('DB_PASSWORD')
 
-    str_conexao = f"{DRIVER};SERVER={SERVIDOR};DATABASE={BANCO};Trust_Connection=yes;"
+    str_conexao = f"DRIVER={DRIVER};SERVER={SERVIDOR};DATABASE={BANCO};UID={USUARIO_SQL};PWD={SENHA_SQL};"
 
     try:
         #Conexão com o banco: 
@@ -25,7 +24,7 @@ def get_db_connection():
         cursor = conexao.cursor()
 
         #Teste com consulta:
-        cursor.execute("SELECT * FROM usuario")
+        cursor.execute("SELECT * FROM apt_usuario")
 
         #Printar os resultados:
         linhas = cursor.fetchall()
