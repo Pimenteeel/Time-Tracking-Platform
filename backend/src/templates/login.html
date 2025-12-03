@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Plataforma de Apontamentos</title>
+        <title>Apontamentos</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     </head>
     <body class="login-body">
@@ -11,8 +11,8 @@
         <div class="login-container">
             <h1>ENGENHARIA DE PRODUTO</h1>
             <form id="login-form">
-                <input type="email" id="email" placeholder="USUÁRIO (EMAIL)" required>
-                <input type="password" id="senha" placeholder="SENHA" required>
+                <input type="email" id="email" placeholder="Usuário (Email)" required>
+                <input type="password" id="senha" placeholder="Senha" required>
                 <button type="submit">ENTRAR</button>
             </form>
 
@@ -20,8 +20,8 @@
                 <a href="#">ESQUECI A SENHA</a>
             </div>
 
-            <div class="logo">
-                NEODENT
+            <div class="logo-container">
+                <img src="{{ url_for('static', filename='logo_neodent.png') }}" alt="Logo Neodent" class="logo-img">
             </div>
 
             <div id="mensagem" style="margin-top: 15px; color: #ff6b6b"></div>

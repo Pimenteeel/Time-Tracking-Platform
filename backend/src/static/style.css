@@ -1,0 +1,313 @@
+/* ==========================================================================
+   Variáveis de Cores (Paleta Baseada na Imagem)
+   ========================================================================== */
+:root {
+    --primary-color: #a06cd5;      /* O Roxo da imagem */
+    --primary-hover: #8e58c1;      /* Roxo um pouco mais escuro para hover */
+    --bg-body: #181818;            /* Fundo quase preto */
+    --bg-card: #252525;            /* Fundo do cartão */
+    --bg-input: #121212;           /* Fundo do input (mais escuro que o cartão) */
+    --text-color: #e0e0e0;         /* Texto claro */
+    --border-color: #444444;       /* Bordas sutis */
+    --danger-color: #e74c3c;       /* Vermelho para erros/botão deletar */
+}
+
+/* ==========================================================================
+   Estilos Gerais e Layout Principal
+   ========================================================================== */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-color);
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.login-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    background-color: var(--bg-card);
+    padding: 50px 40px; /* Mais espaçamento interno */
+    border-radius: 20px; /* Bordas mais arredondadas como na imagem */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); /* Sombra mais difusa */
+    width: 380px;
+    text-align: center;
+    border: 1px solid #333; /* Borda sutil para destacar do fundo */
+}
+
+h1 {
+    margin-bottom: 30px;
+    font-size: 1.5em;
+    letter-spacing: 2px;
+    color: var(--primary-color); /* Título agora é roxo */
+    text-transform: uppercase;
+}
+
+#mensagem {
+    margin-top: 20px;
+    font-weight: bold;
+    min-height: 20px;
+}
+
+/* ==========================================================================
+   Estilos de Formulários (Inputs, Selects, Botões)
+   ========================================================================== */
+input,
+select {
+    width: 100%;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 50px; /* Estilo "Pílula" (bem arredondado) */
+    background-color: var(--bg-input);
+    color: white;
+    font-size: 1em;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Efeito de foco (brilho roxo) */
+input:focus,
+select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(160, 108, 213, 0.4);
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 50px; /* Botão arredondado igual aos inputs */
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 10px;
+    box-shadow: 0 4px 15px rgba(160, 108, 213, 0.3); /* Sombra roxa suave */
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px); /* Leve subida ao passar o mouse */
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+.links-container {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.links-container a {
+    text-decoration: none;
+    color: #bbb;
+    font-size: 0.9em;
+    transition: color 0.3s;
+}
+
+.links-container a:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.logo {
+    margin-top: 40px;
+    font-size: 0.8em;
+    color: #555;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   Layout do Dashboard (Adaptado para a nova paleta)
+   ========================================================================== */
+.dashboard-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    background-color: var(--bg-card);
+    color: var(--text-color);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #333;
+}
+
+.sidebar-header {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.sidebar-nav h3 {
+    font-size: 0.9em;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #777;
+    margin-top: 20px;
+    padding-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-nav a {
+    text-decoration: none;
+    color: #ccc;
+    display: block;
+    padding: 12px 15px;
+    border-radius: 10px; /* Links da sidebar arredondados */
+    margin-bottom: 5px;
+    transition: all 0.2s;
+}
+
+.sidebar-nav a:hover {
+    background-color: rgba(160, 108, 213, 0.1); /* Fundo roxo bem transparente */
+    color: var(--primary-color);
+    padding-left: 20px; /* Efeito de deslize */
+}
+
+.sidebar #logout-btn {
+    margin-top: auto;
+    background-color: transparent;
+    border: 1px solid var(--danger-color);
+    color: var(--danger-color);
+}
+
+.sidebar #logout-btn:hover {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-body);
+    overflow-y: auto;
+}
+
+/* ==========================================================================
+   Barra do Timer e Tabelas
+   ========================================================================== */
+.timer-bar {
+    background-color: var(--bg-card);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    border: 1px solid #333;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Ajustes específicos para inputs dentro da barra do timer */
+.timer-bar input, .timer-bar select {
+    margin-bottom: 0;
+    background-color: var(--bg-input);
+}
+
+#timer-display {
+    color: var(--primary-color); /* Timer Roxo */
+    background-color: rgba(0,0,0,0.2);
+    border: 1px solid var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-family: 'Courier New', monospace;
+}
+
+/* Tabelas e Listas */
+.apontamento-item {
+    background-color: var(--bg-card);
+    border-radius: 15px;
+    border: 1px solid #333;
+    margin-bottom: 10px;
+}
+
+.apontamento-item:hover {
+    border-color: var(--primary-color);
+}
+
+.data-header {
+    background-color: var(--primary-color); /* Cabeçalho da data em Roxo */
+    border-radius: 50px;
+}
+
+.planilha-table thead th {
+    background-color: #2a2a2a;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.planilha-table tbody tr:nth-child(even) {
+    background-color: #1f1f1f;
+}
+
+.planilha-table tbody tr:hover {
+    background-color: #2a2a2a;
+}
+
+.week-nav-btn:hover {
+    background-color: var(--primary-color);
+}
+
+/* Botões de Ação na Gestão */
+.gestao-card {
+    background-color: var(--bg-card);
+    border-radius: 15px;
+    border: 1px solid #333;
+}
+
+.gestao-card h3 {
+    color: var(--primary-color);
+    border-bottom: 1px solid #444;
+}
+
+.gestao-card form button[type="submit"] {
+    background-color: var(--primary-color);
+}
+
+.gestao-card form button[type="submit"]:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Container para centralizar */
+.logo-container {
+    margin-top: 40px;
+    text-align: center;
+    width: 100%;
+}
+
+/* Estilo da Imagem da Logo */
+.logo-img {
+    max-width: 180px; /* Controla o tamanho da logo */
+    height: auto;     /* Mantém a proporção */
+    opacity: 0.8;     /* Deixa levemente transparente para ficar elegante */
+    transition: opacity 0.3s;
+}
+
+.logo-img:hover {
+    opacity: 1; /* Fica 100% visível ao passar o mouse */
+}
