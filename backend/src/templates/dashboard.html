@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Apontamento de Horas</title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    </head>
+    <body>
+
+        <div class="dashboard-container">
+
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <img src="{{ url_for('static', filename='logo_neodent.png') }}" alt="Neodent" class="sidebar-logo">
+                </div>
+
+                <nav class="sidebar-nav">
+                    <h3>APONTAMENTOS</h3>
+                    <ul>
+                        <li><a href="#" id="nav-cronometro" class="active"><i class="fas fa-stopwatch"></i> CRONÔMETRO</a></li>
+                        <li><a href="#" id="nav-planilha"><i class="fas fa-table"></i> PLANILHA</a></li>
+                    </ul>
+
+                    <h3>RELATÓRIOS</h3>
+                    <ul>
+                        <li><a href="#" id="nav-relatorio-detalhado">DETALHADO</a></li>
+                        <li><a href="#" id="nav-relatorio-resumido">RESUMIDO</a></li>
+                    </ul>
+
+                    <h3>EQUIPE</h3>
+                    <ul>
+                        <li><a href="#" id="nav-equipe-detalhado">DETALHADO</a></li>
+                        <li><a href="#" id="nav-equipe-resumido">RESUMIDO</a></li>
+                        <li><a href="#" id="nav-gestao"><i class="fas fa-users-cog"></i> GESTÃO</a></li>
+                    </ul>
+                </nav>
+
+                <button id="logout-btn">SAIR</button>
+            </aside>
+
+            <main class="main-content">
+
+                <div id="cronometro-view" class="view">
+                    <div class="timer-bar">
+                        <select id="pilar">
+                            <option value="" disabled selected>Carregando...</option>
+                        </select>
+
+                        <select id="projeto" disabled>
+                            <option value="" disabled selected>Selecione um Pilar...</option>
+                        </select>
+
+                        <input type="text" id="observacao" placeholder="Adicione uma observação">
+
+                        <div id="timer-display">00:00:00</div>
+
+                        <button id="btn-iniciar" onclick="toggleTimer()">INICIAR</button>
+                    </div>
+
+                    <div class="content-area">
+                        <h2>Meus Apontamentos</h2>
+                        <div id="lista-apontamentos">
+                            <p style="color: #616161; text-align: center; margin-top: 20px;">Carregando histórico...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="planilha-view" class="view" style="display: none;">
+                    <div class="planilha-header">
+                        <button id="prev-week-btn" class="week-nav-btn">&lt;</button>
+                        <h2 id="planilha-titulo">Planilha Semanal</h2>
+                        <button id="next-week-btn" class="week-nav-btn">&gt;</button>
+                    </div>
+                    <div id="planilha-container">
+                        <p>Funcionalidade de Planilha em desenvolvimento...</p>
+                    </div>
+                </div>
+
+                <div id="gestao-view" class="view" style="display: none;">
+                    <h2>Gestão de Equipes</h2>
+
+                    <div class="gestao-container">
+
+                        <div class="gestao-card" id="card-add-usuario">
+                            <h3>Cadastrar Novo Usuário</h3>
+                            <form id="gestao-add-user-form">
+                                <input type="text" id="gestao-nome-user" placeholder="Nome Completo" required>
+                                <input type="email" id="gestao-email-user" placeholder="Email do Usuário" required>
+                                <input type="password" id="gestao-senha-user" placeholder="Senha Provisória" required>
+
+                                <select id="gestao-nivel-user" required>
+                                    <option value="" disabled selected>Selecione o Cargo...</option>
+                                    <option value="1">Colaborador</option>
+                                    <option value="2">Líder</option>
+                                    <option value="3">Administrador</option>
+                                </select>
+
+                                <button type="submit">Cadastrar Usuário</button>
+                            </form>
+                        </div>
+
+                        <div class="gestao-card" id="card-add-pilar">
+                            <h3>Adicionar Novo Pilar</h3>
+                            <form id="gestao-add-pilar-form">
+                                <input type="text" id="gestao-nome-pilar" placeholder="Nome do novo Pilar" required>
+                                <button type="submit">Adicionar Pilar</button>
+                            </form>
+                        </div>
+                        
+                        <div class="gestao-card" id="card-add-projeto">
+                            <h3>Adicionar Novo Projeto</h3>
+                            <form id="gestao-add-projeto-form">
+                                <select id="gestao-pilar-select" required>
+                                    <option value="">Carregando Pilares...</option>
+                                </select>
+                                <input type="text" id="gestao-nome-projeto" placeholder="Nome do novo Projeto" required>
+                                <button type="submit">Adicionar Projeto</button>
+                            </form>
+                        </div>
+
+                        <div class="gestao-card gestao-card-full-width" id="card-membros-equipe">
+                            <h3>Membros da Equipe</h3>
+                            <div id="membros-equipe-container">
+                                <p>Carregando membros...</p> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <script type="module" src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+    </body>
+</html>
